@@ -1,5 +1,11 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&display=swap');
+
+@theme {
+  --color-primary: #eeeeee;
+  --color-secondary: #303841;
+  --color-grey-dark: #3a4750;
+  --color-neon: #00adb5;
+}
 
 @layer base {
 
@@ -26,24 +32,24 @@
   }
 
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    overflow: hidden;
+    overflow-x: hidden;
     color: white;
   }
 
   h1,
   h2,
   h3 {
-    font-family: 'Bungee', sans-serif;
+    font-family: "Bungee", sans-serif;
   }
 
   h4,
   h5,
   h6 {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
   }
 
   ul,
@@ -84,6 +90,12 @@
 }
 
 @layer components {
+
+  .text-shadow-neon {
+    text-shadow: 0 5px 5px var(--color-neon);
+  }
+
+  /* Desktop */
   .nav-item {
     position: relative;
     cursor: pointer;
@@ -91,14 +103,14 @@
   }
 
   .nav-item::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -4px;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
     height: 2px;
-    background-color: rgb(34, 211, 238);
+    background-color: var(--color-neon);
     transition: width 0.3s ease-out;
   }
 
@@ -110,4 +122,36 @@
     width: 100%;
     background-color: rgb(34, 211, 238);
   }
+
+  /* Mobile */
+  .nav-ham {
+    position: relative;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  .nav-ham::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-neon);
+    transition: width 0.3s ease-out;
+  }
+
+  .nav-ham:hover::after {
+    width: 30%;
+  }
+
+  .nav-ham.active::after {
+    width: 30%;
+    background-color: rgb(34, 211, 238);
+  }
+
+  .skill-bg {
+    @apply bg-secondary/30 hover:bg-secondary/50 border border-neon/20 hover:border-neon/40 rounded-md p-4
+  }
+
 }
